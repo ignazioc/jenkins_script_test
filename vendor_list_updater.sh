@@ -21,7 +21,7 @@ pushd $(mktemp -d)
 git clone git@github.corp.ebay.com:eBay-Kleinanzeigen/consent-service.git
 
 
-BRANCH='scheduled_deploy'
+BRANCH='master'
 
 # download the new vendor list
 curl https://vendorlist.consensu.org/v2/vendor-list.json -o 'vendor-list-tmp.json'
