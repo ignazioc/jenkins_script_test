@@ -1,0 +1,36 @@
+#!groovy
+
+// We're using our own Jenkins Pipeline Library to keep the Jenkinsfiles compact.
+// More details: https://github.corp.ebay.com/eBay-Kleinanzeigen/jenkins-shared-build-libraries
+
+@Library('ebayk-jenkins-lib@v2') _
+
+pipeline {
+    agent any
+    triggers {
+        // cron('* * * * *')
+        // Every Thursday at 17.05
+        cron('5 17 * * 4')
+    }
+    environment {
+        EK_SLACK_CHANNEL = 'ek-gdpr-jenkins'
+    }
+    stages {
+        stage('Update Consent service and redeploy') {
+            steps {
+                sh './vendor_list_updater.sh'
+            }
+        }
+    }
+    post { 
+        always { 
+            ekSlackSend(color: '#808080', message: "Triggered pipeline for the update of the consent-service")
+        }
+        success {
+            ekSlackSend(color: '#00FF00', message: "The update script compled with success")
+        }
+        failure {
+            ekSlackSend(color: '#FF0000', message: "The update script failed")
+        }
+    }
+}
