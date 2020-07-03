@@ -23,7 +23,7 @@ pipeline {
                     if (script_output == 0) {
                         echo "Eveything is fine"
                     }
-                    else if (idx == 10) {
+                    else if (script_output == 10) {
                         echo "Error n. 10!"
                     } else {
                         echo "Some other error"
