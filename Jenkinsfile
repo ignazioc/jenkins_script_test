@@ -18,6 +18,7 @@ pipeline {
         stage('Update Consent service and redeploy') {
             steps {
                 script {
+                    def command_stdout = "foo"
                     try {
                         // shortCommit = sh(returnStdout: true, script: "git log -n 1 --pretty=format:'%h'").trim()
                         command_stdout = sh(returnStdout: true, script: "./vendor_list_updater.sh")
