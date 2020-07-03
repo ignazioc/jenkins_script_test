@@ -19,16 +19,19 @@ pipeline {
         stage('Update Consent service and redeploy') {
             steps {
                 script {
-                    catchError {
+                    try {
                         // shortCommit = sh(returnStdout: true, script: "git log -n 1 --pretty=format:'%h'").trim()
                         command_stdout = sh(returnStdout: true, script: "./vendor_list_updater.sh")
-                    }
-                    echo "asdfasdfa"
-                    echo currentBuild.result
-                    echo "222222"
-                    echo command_stdout
-                    echo "33333"
+                    } catch (err) {
+                        echo "1111111"
+                        echo "Failed: ${err}"
+                        echo "Failed: ${command_stdout}"
 
+                    } finally {
+                        echo "222222"
+                        echo "222222: ${command_stdout}"
+                        
+                    }
                 }
                 // sh script: 'ls -l /', returnStdout: true
                 // b = sh script: 'ls -l /', returnStdout: true
