@@ -14,6 +14,7 @@
 # set -e
 
 
+export SOME_VAR=42
 exit 20
 
 # Jump into a tmp folder.
