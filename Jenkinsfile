@@ -3,7 +3,6 @@
 // We're using our own Jenkins Pipeline Library to keep the Jenkinsfiles compact.
 // More details: https://github.corp.ebay.com/eBay-Kleinanzeigen/jenkins-shared-build-libraries
 
-@Library('ebayk-jenkins-lib@v2') _
 
 pipeline {
     agent any
