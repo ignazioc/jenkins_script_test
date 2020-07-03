@@ -18,8 +18,16 @@ pipeline {
         stage('Update Consent service and redeploy') {
             steps {
                 script {
-                    def command_stdout = sh(returnStatus: true, script: "./vendor_list_updater.sh")
+                    def script_output = sh(returnStatus: true, script: "./vendor_list_updater.sh")
                     echo "FFFFF: ${command_stdout}"
+                    if (script_output == 0) {
+                        echo "Eveything is fine"
+                    }
+                    else if (idx == 10) {
+                        echo "Error n. 10!"
+                    } else {
+                        echo "Some other error"
+                    }
                     // def command_stdout = "foo"
                     // try {
                     //     // shortCommit = sh(returnStdout: true, script: "git log -n 1 --pretty=format:'%h'").trim()
