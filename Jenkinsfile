@@ -18,20 +18,22 @@ pipeline {
         stage('Update Consent service and redeploy') {
             steps {
                 script {
-                    def command_stdout = "foo"
-                    try {
-                        // shortCommit = sh(returnStdout: true, script: "git log -n 1 --pretty=format:'%h'").trim()
-                        command_stdout = sh(returnStatus: true, script: "./vendor_list_updater.sh")
-                    } catch (err) {
-                        echo "1111111"
-                        echo "Failed: ${err}"
-                        echo "Failed: ${command_stdout}"
+                    command_stdout = sh(returnStatus: true, script: "./vendor_list_updater.sh")
+                    echo "FFFFF: ${command_stdout}"
+                    // def command_stdout = "foo"
+                    // try {
+                    //     // shortCommit = sh(returnStdout: true, script: "git log -n 1 --pretty=format:'%h'").trim()
+                    //     command_stdout = sh(returnStatus: true, script: "./vendor_list_updater.sh")
+                    // } catch (err) {
+                    //     echo "1111111"
+                    //     echo "Failed: ${err}"
+                    //     echo "Failed: ${command_stdout}"
 
-                    } finally {
-                        echo "222222"
-                        echo "222222: ${command_stdout}"
+                    // } finally {
+                    //     echo "222222"
+                    //     echo "222222: ${command_stdout}"
                         
-                    }
+                    // }
                 }
                 // sh script: 'ls -l /', returnStdout: true
                 // b = sh script: 'ls -l /', returnStdout: true
