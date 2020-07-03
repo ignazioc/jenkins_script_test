@@ -8,17 +8,25 @@
 pipeline {
     agent any
     triggers {
-        // cron('* * * * *')
+        cron('* * * * *')
         // Every Thursday at 17.05
-        cron('5 17 * * 4')
+        // cron('5 17 * * 4')
     }
     environment {
-        EK_SLACK_CHANNEL = 'ek-gdpr-jenkins'
+        EK_SLACK_CHANNEL = 'ek-gdpr-jenkins-tests'
     }
     stages {
         stage('Update Consent service and redeploy') {
             steps {
-                sh './vendor_list_updater.sh'
+                EXIT_CODE = sh (
+                    script: './vendor_list_updater.sh',
+                    returnStdout: true)
+                if (EXIT_CODE == '10') {
+                    ekSlackSend(color: '#808080', message: "10 10 10")
+                } else if (EXIT_CODE == '20') {
+                    ekSlackSend(color: '#808080', message: "20 20 20")
+                }
+                // sh './vendor_list_updater.sh'
             }
         }
     }

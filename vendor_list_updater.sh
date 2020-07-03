@@ -6,8 +6,8 @@
 # [X] 3. Run some sanity check.
 # [X] 4. Replace old vendor list and translation with the new one.
 # [X] 5. Commit
-# [ ] 6. Deploy on production
-# [ ] 7. Send notification when job fails
+# [X] 6. Deploy on production
+# [X] 7. Send notification when job fails
 
 
 # Exit on errors
@@ -42,13 +42,13 @@ OLD_VENDOR_VERSION=`jq '.vendorListVersion' consent-service/src/main/resources/v
 # Assert the two new versions are the same
 if [ ${VENDOR_VERSION} != ${PURPOSES_VERSION} ]; then
     echo "Vendor list and purposes do not match"
-    exit 1
+    exit 10
 fi
 
 # Assert the new is different from the old
 if [ ${VENDOR_VERSION} == ${OLD_VENDOR_VERSION} ]; then
     echo "New version is equal to the current one"
-    exit 1
+    exit 20
 fi
 
 # git checkout ${BRANCH}
