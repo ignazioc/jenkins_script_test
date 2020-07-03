@@ -14,8 +14,8 @@
 # set -e
 
 
-export SOME_VAR=42
-exit 20
+
+exit 0
 
 # Jump into a tmp folder.
 pushd $(mktemp -d)
