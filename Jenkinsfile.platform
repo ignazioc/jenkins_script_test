@@ -19,13 +19,15 @@ pipeline {
         stage('Update Consent service and redeploy') {
             steps {
                 script {
-                    def EXIT_CODE = sh (script: './vendor_list_updater.sh', returnStatus: true)
-                    echo ${EXIT_CODE}
-                    if (${EXIT_CODE} == '10') {
-                        ekSlackSend(color: '#808080', message: "10 10 10")
-                    } else if (${EXIT_CODE} == '20') {
-                        ekSlackSend(color: '#808080', message: "20 20 20")
-                    } 
+                    def statusCode = sh (script: './vendor_list_updater.sh', returnStatus: true)
+                    echo "XXXX"
+                    echo statusCode
+                    echo "XXXX"
+                    // if (${EXIT_CODE} == '10') {
+                    //     ekSlackSend(color: '#808080', message: "10 10 10")
+                    // } else if (${EXIT_CODE} == '20') {
+                    //     ekSlackSend(color: '#808080', message: "20 20 20")
+                    // } 
                 }
                 // sh script: 'ls -l /', returnStdout: true
                 // b = sh script: 'ls -l /', returnStdout: true

@@ -14,6 +14,8 @@
 # set -e
 
 
+exit 20
+
 # Jump into a tmp folder.
 pushd $(mktemp -d)
 
