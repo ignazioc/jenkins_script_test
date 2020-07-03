@@ -22,8 +22,12 @@ pipeline {
                     catchError {
                         def v = sh (script: './vendor_list_updater.sh', returnStatus: true)
                     }
+                    echo "asdfasdfa"
                     echo currentBuild.result
+                    echo "222222"
                     echo v
+                    echo "33333"
+
                 }
                 // sh script: 'ls -l /', returnStdout: true
                 // b = sh script: 'ls -l /', returnStdout: true
