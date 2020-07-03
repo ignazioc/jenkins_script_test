@@ -15,22 +15,24 @@
 
 
 
-exit 0
+echo "Vendor list and purposes do not match"
+exit 10
 
 # Jump into a tmp folder.
-pushd $(mktemp -d)
+temp_dir=`mktemp -d`
+pushd $temp_dir > /dev/null
 
 # Clone the current Consent service
-git clone git@github.corp.ebay.com:eBay-Kleinanzeigen/consent-service.git
+git clone --quiet git@github.corp.ebay.com:eBay-Kleinanzeigen/consent-service.git
 
 
 BRANCH='master'
 
 # download the new vendor list
-curl https://vendorlist.consensu.org/v2/vendor-list.json -o 'vendor-list-tmp.json'
+curl --silent https://vendorlist.consensu.org/v2/vendor-list.json -o 'vendor-list-tmp.json'
 
 # download the translation file
-curl https://vendorlist.consensu.org/v2/purposes-de.json -o 'purposes-de-tmp.json'
+curl --silent https://vendorlist.consensu.org/v2/purposes-de.json -o 'purposes-de-tmp.json'
 
 
 # Validate both JSON
@@ -60,12 +62,12 @@ fi
 mv vendor-list-tmp.json consent-service/src/main/resources/vendor/vendorList.json
 mv purposes-de-tmp.json consent-service/src/main/resources/vendor/purposes-de.json
 
-pushd consent-service
+pushd consent-service > /dev/null
 #git commit -am "Automatically update Vendor list from ${OLD_VENDOR_VERSION} to ${VENDOR_VERSION}"
 #git push
-popd
+popd > /dev/null
 
 
-popd
+popd > /dev/null
 
 

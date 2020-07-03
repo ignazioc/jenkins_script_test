@@ -21,12 +21,12 @@ pipeline {
                 script {
                     catchError {
                         // shortCommit = sh(returnStdout: true, script: "git log -n 1 --pretty=format:'%h'").trim()
-                        shortCommit = sh(returnStatus: true, script: "./vendor_list_updater.sh")
+                        command_stdout = sh(returnStdout: true, script: "./vendor_list_updater.sh")
                     }
                     echo "asdfasdfa"
                     echo currentBuild.result
                     echo "222222"
-                    echo shortCommit
+                    echo command_stdout
                     echo "33333"
 
                 }
