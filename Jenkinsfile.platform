@@ -18,9 +18,7 @@ pipeline {
     stages {
         stage('Update Consent service and redeploy') {
             steps {
-                EXIT_CODE = sh (
-                    script: './vendor_list_updater.sh',
-                    returnStdout: true)
+                EXIT_CODE = sh (script: './vendor_list_updater.sh', returnStatus: true)
                 if (EXIT_CODE == '10') {
                     ekSlackSend(color: '#808080', message: "10 10 10")
                 } else if (EXIT_CODE == '20') {
