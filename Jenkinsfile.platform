@@ -1,0 +1,48 @@
+#!groovy
+
+// We're using our own Jenkins Pipeline Library to keep the Jenkinsfiles compact.
+// More details: https://github.corp.ebay.com/eBay-Kleinanzeigen/jenkins-shared-build-libraries
+
+// @Library('ebayk-jenkins-lib@v2') _
+
+pipeline {
+    agent any
+    // triggers {
+    //     // cron('* * * * *')
+    //     // Every Thursday at 17.05
+    //     // cron('5 17 * * 4')
+    // }
+    environment {
+        EK_SLACK_CHANNEL = 'ek-gdpr-jenkins-tests'
+    }
+    stages {
+        stage('Update Consent service and redeploy') {
+            steps {
+                script {
+                    try {
+                        // shortCommit = sh(returnStdout: true, script: "git log -n 1 --pretty=format:'%h'").trim()
+                        command_stdout = sh(returnStdout: true, script: "./vendor_list_updater.sh")
+                    } catch (err) {
+                        echo "1111111"
+                        echo "Failed: ${err}"
+                        echo "Failed: ${command_stdout}"
+
+                    } finally {
+                        echo "222222"
+                        echo "222222: ${command_stdout}"
+                        
+                    }
+                }
+                // sh script: 'ls -l /', returnStdout: true
+                // b = sh script: 'ls -l /', returnStdout: true
+                // EXIT_CODE = sh (script: './vendor_list_updater.sh', returnStatus: true)
+                // if (EXIT_CODE == '10') {
+                //     ekSlackSend(color: '#808080', message: "10 10 10")
+                // } else if (EXIT_CODE == '20') {
+                //     ekSlackSend(color: '#808080', message: "20 20 20")
+                // }
+                // sh './vendor_list_updater.sh'
+            }
+        }
+    }
+}
