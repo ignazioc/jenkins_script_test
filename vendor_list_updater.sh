@@ -11,7 +11,7 @@
 
 
 # Exit on errors
-set -e
+# set -e
 
 
 # Jump into a tmp folder.

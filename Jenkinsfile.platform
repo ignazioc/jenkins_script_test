@@ -7,11 +7,11 @@
 
 pipeline {
     agent any
-    triggers {
-        cron('* * * * *')
-        // Every Thursday at 17.05
-        // cron('5 17 * * 4')
-    }
+    // triggers {
+    //     // cron('* * * * *')
+    //     // Every Thursday at 17.05
+    //     // cron('5 17 * * 4')
+    // }
     environment {
         EK_SLACK_CHANNEL = 'ek-gdpr-jenkins-tests'
     }
