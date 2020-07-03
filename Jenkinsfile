@@ -21,7 +21,7 @@ pipeline {
                     def command_stdout = "foo"
                     try {
                         // shortCommit = sh(returnStdout: true, script: "git log -n 1 --pretty=format:'%h'").trim()
-                        command_stdout = sh(returnStdout: true, script: "./vendor_list_updater.sh")
+                        command_stdout = sh(returnStatus: true, script: "./vendor_list_updater.sh")
                     } catch (err) {
                         echo "1111111"
                         echo "Failed: ${err}"
