@@ -44,15 +44,4 @@ pipeline {
             }
         }
     }
-    post { 
-        always { 
-            ekSlackSend(color: '#808080', message: "Triggered pipeline for the update of the consent-service")
-        }
-        success {
-            ekSlackSend(color: '#00FF00', message: "The update script compled with success")
-        }
-        failure {
-            ekSlackSend(color: '#FF0000', message: "The update script failed")
-        }
-    }
 }
