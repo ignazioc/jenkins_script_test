@@ -24,7 +24,7 @@ pipeline {
                         echo "Eveything is fine"
                     }
                     else if (script_output == 10) {
-                        echo "Error n. 10!"
+                        error("Vendor list and purposes do not match")
                     } else {
                         echo "Some other error"
                     }
