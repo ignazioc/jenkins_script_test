@@ -20,9 +20,10 @@ pipeline {
             steps {
                 script {
                     catchError {
-                        sh (script: './vendor_list_updater.sh', returnStatus: true)
+                        def v = sh (script: './vendor_list_updater.sh', returnStatus: true)
                     }
                     echo currentBuild.result
+                    echo v
                 }
                 // sh script: 'ls -l /', returnStdout: true
                 // b = sh script: 'ls -l /', returnStdout: true
