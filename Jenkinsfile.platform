@@ -20,12 +20,12 @@ pipeline {
             steps {
                 script {
                     catchError {
-                        def v = sh (script: './vendor_list_updater.sh', returnStatus: true)
+                        shortCommit = sh(returnStdout: true, script: "git log -n 1 --pretty=format:'%h'").trim()
                     }
                     echo "asdfasdfa"
                     echo currentBuild.result
                     echo "222222"
-                    echo v
+                    echo shortCommit
                     echo "33333"
 
                 }
