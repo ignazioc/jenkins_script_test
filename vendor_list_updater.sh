@@ -58,8 +58,8 @@ mv vendor-list-tmp.json consent-service/src/main/resources/vendor/vendorList.jso
 mv purposes-de-tmp.json consent-service/src/main/resources/vendor/purposes-de.json
 
 pushd consent-service
-git commit -am "Automatically update Vendor list from ${OLD_VENDOR_VERSION} to ${VENDOR_VERSION}"
-git push
+#git commit -am "Automatically update Vendor list from ${OLD_VENDOR_VERSION} to ${VENDOR_VERSION}"
+#git push
 popd
 
 

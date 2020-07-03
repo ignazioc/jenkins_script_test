@@ -20,9 +20,10 @@ pipeline {
             steps {
                 script {
                     def EXIT_CODE = sh (script: './vendor_list_updater.sh', returnStatus: true)
-                    if (EXIT_CODE == '10') {
+                    echo ${EXIT_CODE}
+                    if (${EXIT_CODE} == '10') {
                         ekSlackSend(color: '#808080', message: "10 10 10")
-                    } else if (EXIT_CODE == '20') {
+                    } else if (${EXIT_CODE} == '20') {
                         ekSlackSend(color: '#808080', message: "20 20 20")
                     } 
                 }
