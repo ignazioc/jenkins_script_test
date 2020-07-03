@@ -19,7 +19,7 @@ pipeline {
             steps {
                 script {
                     def script_output = sh(returnStatus: true, script: "./vendor_list_updater.sh")
-                    echo "FFFFF: ${command_stdout}"
+                    echo "FFFFF: ${script_output}"
                     if (script_output == 0) {
                         echo "Eveything is fine"
                     }
