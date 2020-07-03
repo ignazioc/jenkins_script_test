@@ -18,7 +18,7 @@ pipeline {
         stage('Update Consent service and redeploy') {
             steps {
                 script {
-                    command_stdout = sh(returnStatus: true, script: "./vendor_list_updater.sh")
+                    def command_stdout = sh(returnStatus: true, script: "./vendor_list_updater.sh")
                     echo "FFFFF: ${command_stdout}"
                     // def command_stdout = "foo"
                     // try {
