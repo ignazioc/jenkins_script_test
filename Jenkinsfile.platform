@@ -19,7 +19,12 @@ pipeline {
         stage('Update Consent service and redeploy') {
             steps {
                 script {
-                    def statusCode = sh (script: './vendor_list_updater.sh', returnStatus: true)
+                    try {
+                        def statusCode = sh (script: './vendor_list_updater.sh', returnStatus: true)
+                    } catch (err) {
+                        echo err.getMessage()
+                    }
+                    
                     echo "1111"
                     sh env
                     echo "2222"
