@@ -19,7 +19,6 @@ pipeline {
             steps {
                 script {
                     def script_output = sh(returnStatus: true, script: "./vendor_list_updater.sh")
-                    echo "FFFFF: ${script_output}"
                     if (script_output == 0) {
                         echo "Eveything is fine"
                     }
@@ -28,30 +27,9 @@ pipeline {
                     } else {
                         echo "Some other error"
                     }
-                    // def command_stdout = "foo"
-                    // try {
-                    //     // shortCommit = sh(returnStdout: true, script: "git log -n 1 --pretty=format:'%h'").trim()
-                    //     command_stdout = sh(returnStatus: true, script: "./vendor_list_updater.sh")
-                    // } catch (err) {
-                    //     echo "1111111"
-                    //     echo "Failed: ${err}"
-                    //     echo "Failed: ${command_stdout}"
 
-                    // } finally {
-                    //     echo "222222"
-                    //     echo "222222: ${command_stdout}"
-                        
-                    // }
                 }
-                // sh script: 'ls -l /', returnStdout: true
-                // b = sh script: 'ls -l /', returnStdout: true
-                // EXIT_CODE = sh (script: './vendor_list_updater.sh', returnStatus: true)
-                // if (EXIT_CODE == '10') {
-                //     ekSlackSend(color: '#808080', message: "10 10 10")
-                // } else if (EXIT_CODE == '20') {
-                //     ekSlackSend(color: '#808080', message: "20 20 20")
-                // }
-                // sh './vendor_list_updater.sh'
+                
             }
         }
     }
