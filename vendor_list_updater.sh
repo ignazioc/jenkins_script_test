@@ -3,4 +3,4 @@
 
 
 echo "Vendor list and purposes do not match"
-exit 10
+exit 0
